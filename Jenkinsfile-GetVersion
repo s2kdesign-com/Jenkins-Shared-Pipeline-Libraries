@@ -36,8 +36,8 @@ pipeline {
                 stage('Test develop branch') {
                     steps {                        
                         script{		
-                            if(!get_version('develop').startsWith("1.20.13.${BUILD_NUMBER}")){
-                                error 'Not Correct Version for release branch!'
+                            if(!get_version('develop').startsWith("1.21.13.${BUILD_NUMBER}")){
+                                error 'Not Correct Version for develop branch!'
                             }     
                         }                  
                     }
@@ -46,7 +46,7 @@ pipeline {
                     steps {                        
                         script{		
                             if(!get_version('feature/lv-333').startsWith("2.20.13.${BUILD_NUMBER}")){
-                                error 'Not Correct Version for release branch!'
+                                error 'Not Correct Version for feature branch!'
                             }     
                         }                  
                     }
