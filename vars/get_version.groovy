@@ -8,16 +8,16 @@ import org.s2kdesign.ioc.ContextRegistry
 def call(String branchName) {
     ContextRegistry.registerDefaultContext(this)
 
-    def versionMaster = libraryResource 'org/s2kdesign/pipeline/master_version.json';
+    def versionMaster = libraryResource 'master_version';
     def versionDevelop = libraryResource 'DEVELOP_VERSION';
 
     def projectVersion = versionMaster.split('\\.');
 
     if (branchName == "master"){
-        return "${projectVersion[0]}.${projectVersion[1]}.${env.BUILD_NUMBER}.0"
+        return "${projectVersion[0]}.${projectVersion[1]}.${BUILD_NUMBER}.0"
     } else if (branchName == "develop") {
-        return "${projectVersion[0]}.${projectVersion[1]}.${env.BUILD_NUMBER}.0"
+        return "${projectVersion[0]}.${projectVersion[1]}.${BUILD_NUMBER}.0"
     } else {
-        return "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${env.BUILD_NUMBER}"
+        return "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
     }
 }
