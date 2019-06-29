@@ -3,20 +3,21 @@ Fork this repo and change the files in resources folder to configure all of your
 ```
 resources/
     master_version  - 1.19.12
-    develop_version - 2.19.12
 ```
 After that go to Jenkins -> Configure System and add the settings from the picture bellow
 ![Pipeline detail flow](docs/images/2019-06-29_18h01_13.png)
 
 ### Methods
 GitFlow Versioning in Jenkinsfile:
+![Pipeline detail flow](docs/images/2019-06-29_23h03_51.png)
+```
 - get_version(String branchName)
-   - Master Branch - 1.19.BUILD_NUMBER.0   
-   - Hotfix Branch - 1.19.12.BUILD_NUMBER
-   - Develop Branch - 2.19.BUILD_NUMBER.0
-   - Feature Branch - 2.19.12.BUILD_NUMBER
-   - Release Branch - 2.19.12.BUILD_NUMBER
-
+   - Master Branch  - 1.19.12.BUILD_NUMBER = 1.19.12.0
+   - Hotfix Branch  - *.**.**.BUILD_NUMBER = 1.19.12.1
+   - Release Branch - *.+1.+1.BUILD_NUMBER = 1.20.13.1
+   - Develop Branch - *.+1.+1.BUILD_NUMBER = 1.20.13.1
+   - Feature Branch -+1.+1.+1.BUILD_NUMBER = 2.20.13.1
+```
 MsBuild publishing for projects:
 - TODO
 

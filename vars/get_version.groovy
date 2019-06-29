@@ -9,36 +9,31 @@ import org.s2kdesign.ioc.ContextRegistry
 def call(String branchName) {
     ContextRegistry.registerDefaultContext(this)
 
+    def versionMaster = libraryResource 'master_version'
+    def projectVersion = versionMaster.split('\\.')
 
     if (branchName == "master"){
-        def versionMaster = libraryResource 'master_version'
-        def projectVersion = versionMaster.split('\\.')
-
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${BUILD_NUMBER}.0"
+        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
         return returnVersion
     } else if (branchName.startsWith("hotfix")) {
-        def versionMaster = libraryResource 'master_version'
-        def projectVersion = versionMaster.split('\\.')
-
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
+        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2] + 1}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
         return returnVersion
     }else if (branchName == "develop") {
-        def versionDevelop = libraryResource 'develop_version'
-        projectVersion = versionDevelop.split('\\.')
+        def returnVersion = "${projectVersion[0]}.${projectVersion[1] + 1}.${projectVersion[2] + 1}.${BUILD_NUMBER}"
 
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${BUILD_NUMBER}.0"
+        echo  "using version ${returnVersion}"
+        return returnVersion
+    } else if (branchName.startsWith("release")) {
+        def returnVersion = "${projectVersion[0]}.${projectVersion[1] + 1}.${projectVersion[2] + 1}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
         return returnVersion
     }  else {
-        def versionDevelop = libraryResource 'develop_version'
-
-        projectVersion = versionDevelop.split('\\.')
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
+        def returnVersion = "${projectVersion[0] + 1}.${projectVersion[1] + 1}.${projectVersion[2] + 1}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
         return returnVersion
