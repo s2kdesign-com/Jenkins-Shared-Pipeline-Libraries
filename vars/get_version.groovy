@@ -10,7 +10,7 @@ def call(String branchName) {
     ContextRegistry.registerDefaultContext(this)
 
     def versionMaster = libraryResource 'master_version'
-    def projectVersion = versionMaster.split('\\.').collect(i as int)
+    def projectVersion = versionMaster.split('.').collect{it as int}
 
     if (branchName == "master"){
         def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
