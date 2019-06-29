@@ -13,7 +13,7 @@ GitFlow Versioning in Jenkinsfile:
 ```
 - get_version(String branchName)
    - Master Branch  - 1.19.12.BUILD_NUMBER = 1.19.12.0
-   - Hotfix Branch  - *.**.**.BUILD_NUMBER = 1.19.12.1
+   - Hotfix Branch  - *.**.+1.BUILD_NUMBER = 1.19.13.1
    - Release Branch - *.+1.+1.BUILD_NUMBER = 1.20.13.1
    - Develop Branch - *.+1.+1.BUILD_NUMBER = 1.20.13.1
    - Feature Branch -+1.+1.+1.BUILD_NUMBER = 2.20.13.1
