@@ -9,6 +9,7 @@ After that go to Jenkins -> Configure System and add the settings from the pictu
 
 ### Methods
 GitFlow Versioning in Jenkinsfile:
+
 ![Pipeline detail flow](docs/images/2019-06-29_23h03_51.png)
 ```
 - get_version(String branchName)
