@@ -17,7 +17,7 @@ def call(String branchName) {
     def projectVersion = versionMaster.split('\\.');
 
     if (branchName == "master"){
-        steps.bat("echo \"version ${versionMaster}\"")
+        echo  "version ${versionMaster}"
 
         return "${projectVersion[0]}.${projectVersion[1]}.${BUILD_NUMBER}.0"
     } else if (branchName == "develop") {
