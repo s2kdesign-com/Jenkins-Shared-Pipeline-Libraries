@@ -10,7 +10,7 @@ After that go to Jenkins -> Configure System and add the settings from the pictu
 ### Methods
 GitFlow Versioning in Jenkinsfile:
 
-![Pipeline detail flow](docs/images/2019-06-29_23h03_51.png)
+![GitFlow](docs/images/2019-06-29_23h03_51.png)
 ```
 - get_version(String branchName)
    - Master Branch  - 1.19.12.BUILD_NUMBER = 1.19.12.0
@@ -19,6 +19,10 @@ GitFlow Versioning in Jenkinsfile:
    - Develop Branch - *.+1.+1.BUILD_NUMBER = 1.20.13.1
    - Feature Branch -+1.+1.+1.BUILD_NUMBER = 2.20.13.1
 ```
+
+ 
+![GitFlow](docs/images/2019-06-30_00h30_04.png)
+
 MsBuild publishing for projects:
 - TODO
 
