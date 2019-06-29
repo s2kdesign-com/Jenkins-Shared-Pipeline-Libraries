@@ -1,11 +1,15 @@
 # Jenkins Shared Pipeline Libraries
 Fork this repo and change the files in resources folder to configure all of your projects to have one version for each branch (helpful when multiple teams are releasing every 2 weeks and the version of all team projects should be controlled in one place )
-
+```
+resources/
+    master_version  - 1.19.12
+    develop_version - 2.19.12
+```
 After that go to Jenkins -> Configure System and add the settings from the picture bellow
 ![Pipeline detail flow](docs/images/2019-06-29_18h01_13.png)
 
 ### Methods
-GitFlow Versioning in Jenkins:
+GitFlow Versioning in Jenkinsfile:
 - get_version(String branchName)
    - Master Branch - 1.19.BUILD_NUMBER.0   
    - Hotfix Branch - 1.19.12.BUILD_NUMBER
