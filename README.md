@@ -6,11 +6,11 @@ After that go to Jenkins -> Configure System and add the settings from the pictu
 
 ### Methods
 - get_version(String branchName)
-   - Master Branch - 1.19.BUILD_NUMBER.0
+   - Master Branch - 1.19.BUILD_NUMBER.0   
+   - Hotfix Branch - 1.19.12.BUILD_NUMBER
    - Develop Branch - 2.19.BUILD_NUMBER.0
    - Feature Branch - 2.19.12.BUILD_NUMBER
-   - Release Branch - NOT ADDED
-   - Support Branch - NOT ADDED
+   - Release Branch - 2.19.12.BUILD_NUMBER
 
 ### How to use it in your Jenkinsfile 
 
