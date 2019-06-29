@@ -7,29 +7,48 @@ pipeline {
         stage('Test Versions') {            
             parallel {
                 stage('Test master branch') {
-                    steps {
-                        get_version('master')                        
+                    steps {                        
+                        script{		
+                            if(!get_version('master').startsWith("1.19.12.${BUILD_NUMBER}")){
+                                error 'Not Correct Version for master branch!!'
+                            }     
+                        }                  
                     }
                 }
                 stage('Test hotfix branch') {
-                    steps {
-                        get_version('hotfix/lv-666')                        
+                    steps {                        
+                        script{		
+                            if(!get_version('hotfix/lv-666').startsWith("1.19.13.${BUILD_NUMBER}")){
+                                error 'Not Correct Version for hotfix branch!'
+                            }     
+                        }                  
                     }
                 }
                 stage('Test release branch') {
-                    steps {
-                        get_version('release/1.20.13')                        
+                    steps {                        
+                        script{		
+                            if(!get_version('release/1.20.13').startsWith("1.20.13.${BUILD_NUMBER}")){
+                                error 'Not Correct Version for release branch!'
+                            }     
+                        }                  
                     }
                 }
                 stage('Test develop branch') {
-                    steps {
-                        get_version('develop')                        
+                    steps {                        
+                        script{		
+                            if(!get_version('develop').startsWith("1.20.13.${BUILD_NUMBER}")){
+                                error 'Not Correct Version for develop branch!'
+                            }     
+                        }                  
                     }
                 }
                 stage('Test feature branch') {
-                    steps {
-                        get_version('feature/lv-333')
-                        
+                    steps {                        
+                        script{		
+                            if(!get_version('feature/lv-333').startsWith("2.20.13.${BUILD_NUMBER}")){
+                                error 'Not Correct Version for feature branch!'
+                            }     
+                        }                  
                     }
                 }
             }
