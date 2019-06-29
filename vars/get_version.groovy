@@ -9,13 +9,14 @@ def call(String branchName) {
     ContextRegistry.registerDefaultContext(this)
 
     def versionMaster = libraryResource 'master_version';
-    def versionDevelop = libraryResource 'DEVELOP_VERSION';
+    def versionDevelop = libraryResource 'develop_version';
 
     def projectVersion = versionMaster.split('\\.');
 
     if (branchName == "master"){
         return "${projectVersion[0]}.${projectVersion[1]}.${BUILD_NUMBER}.0"
     } else if (branchName == "develop") {
+        projectVersion = versionDevelop.split('\\.');
         return "${projectVersion[0]}.${projectVersion[1]}.${BUILD_NUMBER}.0"
     } else {
         return "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
