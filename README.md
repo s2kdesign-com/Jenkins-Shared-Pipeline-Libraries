@@ -1,6 +1,19 @@
-# How to use it in your Jenkins Declarative Pipeline
+# Jenkins Shared Pipeline Libraries
+
+### Methods
+- get_version(String branchName)
+   - Master Branch - 1.19.BUILD_NUMBER.0
+   - Develop Branch - 2.19.BUILD_NUMBER.0
+   - Feature Branch - 2.19.12.BUILD_NUMBER
+   - Release Branch - NOT ADDED
+   - Support Branch - NOT ADDED
+
+### How to use it in your Jenkins Declarative Pipeline
 
 ```Groovy
+// add the following line and replace necessary values if you are not loading the library implicitly
+// @Library('org.s2kdesign@master') _
+
 pipeline {
  agent any
     environment {
@@ -8,7 +21,7 @@ pipeline {
         PROJECT_VERSION = get_version(GIT_BRANCH)
         PROJECT_PATH = "HiddenHook/HiddenHook.Web/HiddenHook.Web.csproj"
         PROJECT_NAME = "HiddenHook"  
-		 }
+     }
     stages {
             
         stage('Publish Project') {
@@ -26,10 +39,10 @@ pipeline {
 				
     }
 
-	options {
+    options {
         // make sure we only keep 50 builds at a time, so we don't fill up our storage!
-			buildDiscarder(logRotator(numToKeepStr:'50'))
-	}
+        buildDiscarder(logRotator(numToKeepStr:'50'))
+    }
 }
 def publishProject(){
     bat 'dotnet publish '+ PROJECT_PATH +' -c Debug -o ../../Publish/Debug /P:AssemblyVersion='+ PROJECT_VERSION +' /P:Version='+ PROJECT_VERSION 

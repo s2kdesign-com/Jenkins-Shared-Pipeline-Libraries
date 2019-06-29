@@ -26,6 +26,8 @@ def call(String branchName) {
         echo  "using version ${returnVersion}"
         return returnVersion
     } else {
+
+        projectVersion = versionDevelop.split('\\.')
         def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
