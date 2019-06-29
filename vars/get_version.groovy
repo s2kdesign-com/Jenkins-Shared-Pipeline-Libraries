@@ -9,18 +9,13 @@ import org.s2kdesign.ioc.ContextRegistry
 def call(String branchName) {
     ContextRegistry.registerDefaultContext(this)
 
-    IStepExecutor steps = ContextRegistry.getContext().getStepExecutor()
-
     def versionMaster = libraryResource 'master_version';
-    def versionDevelop = libraryResource 'develop_version';
-
     def projectVersion = versionMaster.split('\\.');
 
     if (branchName == "master"){
-        echo  "version ${versionMaster}"
-
         return "${projectVersion[0]}.${projectVersion[1]}.${BUILD_NUMBER}.0"
     } else if (branchName == "develop") {
+        def versionDevelop = libraryResource 'develop_version';
         projectVersion = versionDevelop.split('\\.');
         return "${projectVersion[0]}.${projectVersion[1]}.${BUILD_NUMBER}.0"
     } else {
