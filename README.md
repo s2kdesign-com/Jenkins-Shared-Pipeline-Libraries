@@ -1,4 +1,8 @@
 # Jenkins Shared Pipeline Libraries
+Fork this repo and change the files in resources folder to configure all of your projects to have one version for each branch (helpful when multiple teams are releasing every 2 weeks and the version of all team projects should be controlled in one place )
+
+After that go to Jenkins -> Configure System and add the settings from the picture bellow
+![Pipeline detail flow](docs/images/2019-06-29_18h01_13.png)
 
 ### Methods
 - get_version(String branchName)
@@ -8,11 +12,11 @@
    - Release Branch - NOT ADDED
    - Support Branch - NOT ADDED
 
-### How to use it in your Jenkins Declarative Pipeline
+### How to use it in your Jenkinsfile 
 
 ```Groovy
 // add the following line and replace necessary values if you are not loading the library implicitly
-// @Library('org.s2kdesign@master') _
+// @Library(['github.com/Magik3a/Jenkinsfile_Gitflow_Versioning/org.s2kdesign']) _
 
 pipeline {
  agent any
