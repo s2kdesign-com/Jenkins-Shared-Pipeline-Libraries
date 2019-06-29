@@ -2,8 +2,8 @@ import org.s2kdesign.IStepExecutor
 import org.s2kdesign.ioc.ContextRegistry
 
 /**
- * Example custom step for easy use of MsBuild inside Jenkinsfiles
- * @param solutionPath Path to .sln file
+ * Getting default version depending on the branch. Versions are configured in resource folder 
+ * @param branchName Use GIT_BRANCH for Multibranch Pipeline Job
  * @return
  */
 def call(String branchName) {
