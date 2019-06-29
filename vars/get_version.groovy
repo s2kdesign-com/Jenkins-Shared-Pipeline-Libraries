@@ -8,7 +8,7 @@ import org.s2kdesign.ioc.ContextRegistry
 def call(String branchName) {
     ContextRegistry.registerDefaultContext(this)
 
-    def versionMaster = libraryResource 'org/s2kdesign/master_version.json';
+    def versionMaster = libraryResource 'master_version.json';
     def versionDevelop = libraryResource 'DEVELOP_VERSION';
 
     def projectVersion = versionMaster.split('\\.');
