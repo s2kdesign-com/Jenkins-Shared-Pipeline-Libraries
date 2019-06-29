@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+    environment {
+        PROJECT_VERSION = get_version('master') 
+		 }
+    stages {
+        stage('Test Versions') {            
+            parallel {
+                stage('Test feature branch') {
+                    steps {
+                        get_version('master')                        
+                    }
+                }
+                stage('Test hotfix branch') {
+                    steps {
+                        get_version('hotfix/lv-666')                        
+                    }
+                }
+                stage('Test release branch') {
+                    steps {
+                        get_version('release/1.20.13')                        
+                    }
+                }
+                stage('Test develop branch') {
+                    steps {
+                        get_version('develop')                        
+                    }
+                }
+                stage('Test feature branch') {
+                    steps {
+                        get_version('feature/lv-333')
+                        
+                    }
+                }
+            }
+        }
+    }
+}
