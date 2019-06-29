@@ -5,6 +5,7 @@ After that go to Jenkins -> Configure System and add the settings from the pictu
 ![Pipeline detail flow](docs/images/2019-06-29_18h01_13.png)
 
 ### Methods
+GitFlow Versioning in Jenkins:
 - get_version(String branchName)
    - Master Branch - 1.19.BUILD_NUMBER.0   
    - Hotfix Branch - 1.19.12.BUILD_NUMBER
@@ -12,6 +13,11 @@ After that go to Jenkins -> Configure System and add the settings from the pictu
    - Feature Branch - 2.19.12.BUILD_NUMBER
    - Release Branch - 2.19.12.BUILD_NUMBER
 
+MsBuild publishing for projects:
+- TODO
+
+.NET Core publishing for projects:
+- TODO
 ### How to use it in your Jenkinsfile 
 
 ```Groovy
