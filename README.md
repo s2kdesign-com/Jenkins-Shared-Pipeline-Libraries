@@ -9,23 +9,24 @@ After that go to Jenkins -> Configure System and add the settings from the pictu
 
 ### Methods
 GitFlow Versioning in Jenkinsfile:
-
-![GitFlow](docs/images/2019-06-29_23h03_51.png)
 ```
 - get_version(String branchName)
    - Master Branch  - 1.19.12.BUILD_NUMBER = 1.19.12.0
-   - Hotfix Branch  - *.**.+1.BUILD_NUMBER = 1.19.13.1
-   - Release Branch - *.+1.+1.BUILD_NUMBER = 1.20.13.1
+   - Hotfix Branch  - *.**.**.BUILD_NUMBER = 1.19.12.1
+   - Release Branch - *.**.+1.BUILD_NUMBER = 1.19.13.1
    - Develop Branch - *.+1.+1.BUILD_NUMBER = 1.20.13.1
    - Feature Branch -+1.+1.+1.BUILD_NUMBER = 2.20.13.1
 ```
 
+![GitFlow](docs/images/2019-06-29_23h03_51.png)
+
+Result Multibranch Pipeline:
  
 ![GitFlow](docs/images/2019-06-30_00h30_04.png)
 
 MsBuild publishing for projects:
 - TODO
-
+ 
 .NET Core publishing for projects:
 - TODO
 ### How to use it in your Jenkinsfile 
