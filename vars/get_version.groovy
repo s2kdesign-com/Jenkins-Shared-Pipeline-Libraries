@@ -18,7 +18,7 @@ def call(String branchName) {
         echo  "using version ${returnVersion}"
         return returnVersion
     } else if (branchName.startsWith("hotfix")) {
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2] + 1}.${BUILD_NUMBER}"
+        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
         return returnVersion
@@ -28,7 +28,7 @@ def call(String branchName) {
         echo  "using version ${returnVersion}"
         return returnVersion
     } else if (branchName.startsWith("release")) {
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1] + 1}.${projectVersion[2] + 1}.${BUILD_NUMBER}"
+        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2] + 1}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
         return returnVersion

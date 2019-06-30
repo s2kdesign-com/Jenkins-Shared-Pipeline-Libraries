@@ -2,14 +2,22 @@ pipeline {
     agent any
     environment {
         PROJECT_VERSION = get_version('master') 
-		 }
+    }
     stages {
         stage('Test Versions') {            
             parallel {
+
+ // Template for testing
+ // - Master Branch  - 1.19.12.BUILD_NUMBER = 1.19.12.0
+ // - Hotfix Branch  - *.**.+1.BUILD_NUMBER = 1.19.13.1
+ // - Release Branch - *.+1.+1.BUILD_NUMBER = 1.20.13.1
+ // - Develop Branch - *.+1.+1.BUILD_NUMBER = 1.20.13.1
+ // - Feature Branch -+1.+1.+1.BUILD_NUMBER = 2.20.13.1
+
                 stage('Test master branch') {
                     steps {                        
                         script{		
-                            if(!get_version('master').startsWith("1.19.12.${BUILD_NUMBER}")){
+                            if(!get_version('master') == "1.19.12.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for master branch!!'
                             }     
                         }                  
@@ -18,7 +26,7 @@ pipeline {
                 stage('Test hotfix branch') {
                     steps {                        
                         script{		
-                            if(!get_version('hotfix/lv-666').startsWith("1.19.13.${BUILD_NUMBER}")){
+                            if(!get_version('hotfix/lv-666') == "1.19.13.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for hotfix branch!'
                             }     
                         }                  
@@ -27,7 +35,7 @@ pipeline {
                 stage('Test release branch') {
                     steps {                        
                         script{		
-                            if(!get_version('release/1.20.13').startsWith("1.20.13.${BUILD_NUMBER}")){
+                            if(!get_version('release/1.20.13') == "1.20.13.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for release branch!'
                             }     
                         }                  
@@ -36,7 +44,7 @@ pipeline {
                 stage('Test develop branch') {
                     steps {                        
                         script{		
-                            if(!get_version('develop').startsWith("1.20.13.${BUILD_NUMBER}")){
+                            if(!get_version('develop') == "1.20.13.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for develop branch!'
                             }     
                         }                  
@@ -45,7 +53,7 @@ pipeline {
                 stage('Test feature branch') {
                     steps {                        
                         script{		
-                            if(!get_version('feature/lv-333').startsWith("2.20.13.${BUILD_NUMBER}")){
+                            if(!get_version('feature/lv-333') == "2.20.13.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for feature branch!'
                             }     
                         }                  
