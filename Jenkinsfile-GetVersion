@@ -10,7 +10,7 @@ pipeline {
  // Template for testing
  // - Master Branch  - 3.17.12.BUILD_NUMBER = 3.17.19.0
  // - Hotfix Branch  - *.**.**.BUILD_NUMBER = 3.17.19.1
- // - Release Branch - *.+1.+1.BUILD_NUMBER = 3.18.20.1
+ // - Release Branch - *.**.+1.BUILD_NUMBER = 3.17.20.1
  // - Develop Branch - *.+1.+1.BUILD_NUMBER = 3.18.20.1
  // - Feature Branch -+1.+1.+1.BUILD_NUMBER = 4.18.20.1
 
