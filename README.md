@@ -2,7 +2,7 @@
 Fork this repo and change the files in resources folder to configure all of your projects to have one version for each branch (helpful when multiple teams are releasing every 2 weeks and the version of all team projects should be controlled in one place )
 ```
 resources/
-    master_version  - 3.17.12
+    master_version  - 3.17.19
 ```
 After that go to Jenkins -> Configure System and add the settings from the picture bellow
 ![Pipeline detail flow](docs/images/2019-06-29_18h01_13.png)
@@ -11,11 +11,11 @@ After that go to Jenkins -> Configure System and add the settings from the pictu
 GitFlow Versioning in Jenkinsfile:
 ```
 - get_version(String branchName)
-   - Master Branch  - 3.17.12.BUILD_NUMBER = 3.17.12.0
-   - Hotfix Branch  - *.**.**.BUILD_NUMBER = 3.17.12.1
-   - Release Branch - *.**.+1.BUILD_NUMBER = 3.18.13.1
-   - Develop Branch - *.+1.+1.BUILD_NUMBER = 3.18.13.1
-   - Feature Branch -+1.+1.+1.BUILD_NUMBER = 4.18.13.1
+   - Master Branch  - 3.17.19.BUILD_NUMBER = 3.17.19.0
+   - Hotfix Branch  - *.**.**.BUILD_NUMBER = 3.17.19.1
+   - Release Branch - *.**.+1.BUILD_NUMBER = 3.18.20.1
+   - Develop Branch - *.+1.+1.BUILD_NUMBER = 3.18.20.1
+   - Feature Branch -+1.+1.+1.BUILD_NUMBER = 4.18.20.1
 ```
 
 ![GitFlow](docs/images/2019-06-29_23h03_51.png)
