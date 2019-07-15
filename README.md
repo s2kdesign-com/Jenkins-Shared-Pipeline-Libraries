@@ -20,9 +20,6 @@ GitFlow Versioning in Jenkinsfile:
 
 ![GitFlow](docs/images/2019-06-29_23h03_51.png)
 
-Result Multibranch Pipeline:
- 
-![GitFlow](docs/images/2019-06-30_00h30_04.png)
 
 MsBuild publishing for projects:
 - TODO
@@ -40,6 +37,8 @@ pipeline {
     environment {
         // Version is defined in external pipeline library https://github.com/Magik3a/Jenkinsfile_Gitflow_Versioning
         PROJECT_VERSION = get_version(GIT_BRANCH)
+        // Use Default version defined per project
+        // PROJECT_VERSION = get_version(GIT_BRANCH, "3.19.20")
         PROJECT_PATH = "HiddenHook/HiddenHook.Web/HiddenHook.Web.csproj"
         PROJECT_NAME = "HiddenHook"  
      }
