@@ -6,11 +6,12 @@ import org.s2kdesign.ioc.ContextRegistry
  * @param branchName Use GIT_BRANCH for Multibranch Pipeline Job
  * @return
  */
-def call(String branchName) {
+def call(String branchName, String defaultVersion = "") {
     ContextRegistry.registerDefaultContext(this)
-
-    def versionMaster = libraryResource 'master_version'
-    def projectVersion = versionMaster.split('\\.').collect{it as int}
+    if(defaultVersion == ""){
+        defaultVersion = libraryResource 'master_version'
+    }
+    def projectVersion = defaultVersion.split('\\.').collect{it as int}
 
     if (branchName == "master"){
         def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"

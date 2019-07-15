@@ -1,7 +1,12 @@
+// @Library(['github.com/Magik3a/Jenkinsfile_Gitflow_Versioning@master']) _
 pipeline {
     agent any
+    libraries {
+      lib('github.com/Magik3a/Jenkinsfile_Gitflow_Versioning@' + BRANCH_NAME)
+    }
     environment {
-        PROJECT_VERSION = get_version('master') 
+        PROJECT_VERSION = '3.22.21.0'
+
     }
     stages {
         stage('Test Versions') {            
@@ -19,7 +24,10 @@ pipeline {
                         script{		
                             if(get_version('master') != "1.19.12.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for master branch!!'
-                            }     
+                            }
+                            if(get_version('master', PROJECT_VERSION) != "3.22.21.${BUILD_NUMBER}"){
+                                error 'Not Correct Version for master branch!!'
+                            }
                         }                  
                     }
                 }
@@ -28,7 +36,10 @@ pipeline {
                         script{		
                             if(get_version('hotfix/lv-666') != "1.19.12.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for hotfix branch!'
-                            }     
+                            }
+                            if(get_version('hotfix/lv-666', PROJECT_VERSION) != "3.22.21.${BUILD_NUMBER}"){
+                                error 'Not Correct Version for hotfix branch!'
+                            }
                         }                  
                     }
                 }
@@ -37,7 +48,10 @@ pipeline {
                         script{		
                             if(get_version('release/1.19.13') != "1.19.13.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for release branch!'
-                            }     
+                            }
+                            if(get_version('release/3.22.22', PROJECT_VERSION) != "3.22.22.${BUILD_NUMBER}"){
+                                error 'Not Correct Version for release branch!'
+                            }
                         }                  
                     }
                 }
@@ -46,7 +60,10 @@ pipeline {
                         script{		
                             if(get_version('develop') != "1.20.13.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for develop branch!'
-                            }     
+                            }
+                            if(get_version('develop', PROJECT_VERSION) != "3.23.22.${BUILD_NUMBER}"){
+                                error 'Not Correct Version for develop branch!'
+                            }
                         }                  
                     }
                 }
@@ -55,7 +72,10 @@ pipeline {
                         script{		
                             if(get_version('feature/lv-333') != "2.20.13.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for feature branch!'
-                            }     
+                            }
+                            if(get_version('feature/lv-333', PROJECT_VERSION) != "4.23.22.${BUILD_NUMBER}"){
+                                error 'Not Correct Version for feature branch!'
+                            }
                         }                  
                     }
                 }
