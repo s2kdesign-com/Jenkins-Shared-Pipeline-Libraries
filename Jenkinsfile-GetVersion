@@ -1,6 +1,9 @@
-@Library(['github.com/Magik3a/Jenkinsfile_Gitflow_Versioning@' + GIT_BRANCH]) _
+// @Library(['github.com/Magik3a/Jenkinsfile_Gitflow_Versioning@master']) _
 pipeline {
     agent any
+    libraries {
+      lib('github.com/Magik3a/Jenkinsfile_Gitflow_Versioning@' + GIT_BRANCH)
+    }
     environment {
         PROJECT_VERSION = '3.22.21.0'
 
