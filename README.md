@@ -30,7 +30,7 @@ MsBuild publishing for projects:
 
 ```Groovy
 // add the following line and replace necessary values if you are not loading the library implicitly
-// @Library(['github.com/Magik3a/Jenkinsfile_Gitflow_Versioning/org.s2kdesign']) _
+// @Library(['github.com/Magik3a/Jenkinsfile_Gitflow_Versioning']) _
 
 pipeline {
  agent any
