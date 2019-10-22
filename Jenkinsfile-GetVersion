@@ -8,16 +8,38 @@ pipeline {
             parallel {
 
  // Template for testing
+ // - support/3.15 - 3.15.BUILD_NUMBER.0 = 3.15.1.0
+ // - support/3.16 - 3.16.BUILD_NUMBER.0 = 3.16.1.0
  // - Master Branch  - 3.17.12.BUILD_NUMBER = 3.17.19.0
  // - Hotfix Branch  - *.**.**.BUILD_NUMBER = 3.17.19.1
  // - Release Branch - *.**.+1.BUILD_NUMBER = 3.17.20.1
  // - Develop Branch - *.+1.+1.BUILD_NUMBER = 3.18.20.1
- // - Feature Branch -+1.+1.+1.BUILD_NUMBER = 4.18.20.1
+ // - Feature (any) Branch -+1.+1.+1.BUILD_NUMBER = 4.18.20.1
+
+                stage('Test support/3.15') {
+                    steps {                        
+                        script{		
+                            if(get_version('support/3.15') != "3.15.${BUILD_NUMBER}.0"){
+                                error 'Not Correct Version for master branch!!'
+                            }     
+                        }                  
+                    }
+                }
+
+                stage('Test support/3.16') {
+                    steps {                        
+                        script{		
+                            if(get_version('support/3.16') != "3.16.${BUILD_NUMBER}.0"){
+                                error 'Not Correct Version for master branch!!'
+                            }     
+                        }                  
+                    }
+                }
 
                 stage('Test master branch') {
                     steps {                        
                         script{		
-                            if(get_version('master') != "3.17.19.${BUILD_NUMBER}"){
+                            if(get_version('master') != "3.18.19.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for master branch!!'
                             }     
                         }                  
@@ -26,7 +48,7 @@ pipeline {
                 stage('Test hotfix branch') {
                     steps {                        
                         script{		
-                            if(get_version('hotfix/lv-666') != "3.17.19.${BUILD_NUMBER}"){
+                            if(get_version('hotfix/lv-666') != "3.18.19.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for hotfix branch!'
                             }     
                         }                  
@@ -35,7 +57,7 @@ pipeline {
                 stage('Test release branch') {
                     steps {                        
                         script{		
-                            if(get_version('release/3.17.20') != "3.17.20.${BUILD_NUMBER}"){
+                            if(get_version('release/3.18.20') != "3.18.20.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for release branch!'
                             }     
                         }                  
@@ -44,7 +66,7 @@ pipeline {
                 stage('Test develop branch') {
                     steps {                        
                         script{		
-                            if(get_version('develop') != "3.18.20.${BUILD_NUMBER}"){
+                            if(get_version('develop') != "3.19.20.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for develop branch!'
                             }     
                         }                  
@@ -53,7 +75,7 @@ pipeline {
                 stage('Test feature branch') {
                     steps {                        
                         script{		
-                            if(get_version('feature/lv-333') != "4.18.20.${BUILD_NUMBER}"){
+                            if(get_version('feature/lv-333') != "4.19.20.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for feature branch!'
                             }     
                         }                  
