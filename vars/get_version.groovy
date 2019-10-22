@@ -38,7 +38,7 @@ def call(String branchName) {
     }
     else if (branchName.startsWith("support"))
     {
-        def branchVersion =   branchName.split('/')[1].split('.');
+        def branchVersion =   branchName.split('\\/')[1].split('\\.');
         def returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${BUILD_NUMBER}.0"
 
         echo  "using version ${returnVersion}"
