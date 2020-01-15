@@ -11,6 +11,8 @@ After that go to Jenkins -> Configure System and add the settings from the pictu
 GitFlow Versioning in Jenkinsfile:
 ```
 - get_version(String branchName)
+   - support/3.15 - 3.15.BUILD_NUMBER.0 = 3.15.1.0
+   - support/3.16 - 3.16.BUILD_NUMBER.0 = 3.16.1.0
    - Master Branch  - 3.17.19.BUILD_NUMBER = 3.17.19.0
    - Hotfix Branch  - *.**.**.BUILD_NUMBER = 3.17.19.1
    - Release Branch - *.**.+1.BUILD_NUMBER = 3.18.20.1
