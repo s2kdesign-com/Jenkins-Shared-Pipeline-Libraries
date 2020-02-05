@@ -25,13 +25,14 @@ def call(String branchName) {
         return returnVersion
     }
     else if (branchName == "develop") {
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1] + 1}.${projectVersion[2] + 1}.${BUILD_NUMBER}"
+        def returnVersion = "${projectVersion[0]}.${projectVersion[1] + 1}.${projectVersion[2]}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
         return returnVersion
     } 
     else if (branchName.startsWith("release")) {
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2] + 1}.${BUILD_NUMBER}"
+        def branchVersion =   branchName.split('\\/')[1].split('\\.');
+        def returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${branchVersion[2]}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
         return returnVersion
@@ -39,13 +40,13 @@ def call(String branchName) {
     else if (branchName.startsWith("support"))
     {
         def branchVersion =   branchName.split('\\/')[1].split('\\.');
-        def returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${BUILD_NUMBER}.0"
+        def returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${branchVersion[2]}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
         return returnVersion
     }
     else {
-        def returnVersion = "${projectVersion[0] + 1}.${projectVersion[1] + 1}.${projectVersion[2] + 1}.${BUILD_NUMBER}"
+        def returnVersion = "${projectVersion[0] + 1}.${projectVersion[1] + 1}.${projectVersion[2]}.${BUILD_NUMBER}"
 
         echo  "using version ${returnVersion}"
         return returnVersion
