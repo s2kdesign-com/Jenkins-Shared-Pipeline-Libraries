@@ -22,7 +22,7 @@ pipeline {
                     steps {                        
                         script{		
                             def currentVersion = "3.16.25.${BUILD_NUMBER}";
-                            echo  "Testing version ${returnVersion}"
+                            echo  "Testing version ${currentVersion}"
 
                             if(get_version('support/3.16.25') != currentVersion){
                                 error 'Not Correct Version for support branch!!'
@@ -35,7 +35,7 @@ pipeline {
                     steps {                        
                         script{		
                             def currentVersion = "3.17.25.${BUILD_NUMBER}";
-                            echo  "Testing version ${returnVersion}"
+                            echo  "Testing version ${currentVersion}"
 
                             if(get_version('support/3.17.25') != currentVersion){
                                 error 'Not Correct Version for support branch!!'
@@ -48,7 +48,7 @@ pipeline {
                     steps {                        
                         script{		
                             def currentVersion = "3.18.${versionSprint}.${BUILD_NUMBER}";
-                            echo  "Testing version ${returnVersion}"
+                            echo  "Testing version ${currentVersion}"
 
                             if(get_version('master') != currentVersion){
                                 error 'Not Correct Version for master branch!!'
@@ -60,7 +60,7 @@ pipeline {
                     steps {                        
                         script{		
                             def currentVersion = "3.18.${versionSprint}.${BUILD_NUMBER}";
-                            echo  "Testing version ${returnVersion}"
+                            echo  "Testing version ${currentVersion}"
 
                             if(get_version('hotfix/lv-666') != currentVersion){
                                 error 'Not Correct Version for hotfix branch!'
@@ -72,7 +72,7 @@ pipeline {
                     steps {                        
                         script{		
                             def currentVersion = "3.19.25.${BUILD_NUMBER}";
-                            echo  "Testing version ${returnVersion}"
+                            echo  "Testing version ${currentVersion}"
 
                             if(get_version('release/3.19.25') != currentVersion){
                                 error 'Not Correct Version for release branch!'
@@ -84,7 +84,7 @@ pipeline {
                     steps {                        
                         script{		
                             def currentVersion = "3.19.${versionSprint}.${BUILD_NUMBER}";
-                            echo  "Testing version ${returnVersion}"
+                            echo  "Testing version ${currentVersion}"
 
                             if(get_version('develop') != currentVersion){
                                 error 'Not Correct Version for develop branch!'
@@ -96,7 +96,7 @@ pipeline {
                     steps {                        
                         script{		
                             def currentVersion = "4.19.${versionSprint}.${BUILD_NUMBER}";
-                            echo  "Testing version ${returnVersion}"
+                            echo  "Testing version ${currentVersion}"
 
                             if(get_version('feature/lv-333') != currentVersion){
                                 error 'Not Correct Version for feature branch!'
