@@ -5,7 +5,7 @@ pipeline {
         versionMaster = libraryResource 'master_version'
         versionSprint = "${versionMaster.split('\\.')[2].trim()}"
 
-        groovyScript = load "${rootDir}@script/vars/get_version.groovy"
+        groovyScript = load "vars/get_version.groovy"
     }
     stages {
         stage('Test Versions') {            
