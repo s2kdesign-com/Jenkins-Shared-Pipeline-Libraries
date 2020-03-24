@@ -2,6 +2,8 @@ pipeline {
     agent any
     environment {
         PROJECT_VERSION = get_version('master') 
+        versionMaster = libraryResource 'master_version'
+        versionSprint = versionMaster.split('\\.')[2]
     }
     stages {
         stage('Test Versions') {            
@@ -39,7 +41,7 @@ pipeline {
                 stage('Test master branch') {
                     steps {                        
                         script{		
-                            if(get_version('master') != "3.18.25.${BUILD_NUMBER}"){
+                            if(get_version('master') != "3.18.${versionSprint}.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for master branch!!'
                             }     
                         }                  
@@ -48,7 +50,7 @@ pipeline {
                 stage('Test hotfix branch') {
                     steps {                        
                         script{		
-                            if(get_version('hotfix/lv-666') != "3.18.25.${BUILD_NUMBER}"){
+                            if(get_version('hotfix/lv-666') != "3.18.${versionSprint}.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for hotfix branch!'
                             }     
                         }                  
@@ -66,7 +68,7 @@ pipeline {
                 stage('Test develop branch') {
                     steps {                        
                         script{		
-                            if(get_version('develop') != "3.19.25.${BUILD_NUMBER}"){
+                            if(get_version('develop') != "3.19.${versionSprint}.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for develop branch!'
                             }     
                         }                  
@@ -75,7 +77,7 @@ pipeline {
                 stage('Test feature branch') {
                     steps {                        
                         script{		
-                            if(get_version('feature/lv-333') != "4.19.25.${BUILD_NUMBER}"){
+                            if(get_version('feature/lv-333') != "4.19.${versionSprint}.${BUILD_NUMBER}"){
                                 error 'Not Correct Version for feature branch!'
                             }     
                         }                  
