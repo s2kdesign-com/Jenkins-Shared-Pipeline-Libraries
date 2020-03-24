@@ -27,7 +27,7 @@ pipeline {
                             def currentVersion = "3.16.25.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
-                            if(groovyScript.get_version('support/3.16.25') != currentVersion){
+                            if(groovyScript.call('support/3.16.25') != currentVersion){
                                 error 'Not Correct Version for support branch!!'
                             }     
                         }                  
@@ -40,7 +40,7 @@ pipeline {
                             def currentVersion = "3.17.25.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
-                            if(groovyScript.get_version('support/3.17.25') != currentVersion){
+                            if(groovyScript.call('support/3.17.25') != currentVersion){
                                 error 'Not Correct Version for support branch!!'
                             }     
                         }                  
@@ -53,7 +53,7 @@ pipeline {
                             def currentVersion = "3.18.${versionSprint}.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
-                            if(groovyScript.get_version('master') != currentVersion){
+                            if(groovyScript.call('master') != currentVersion){
                                 error 'Not Correct Version for master branch!!'
                             }     
                         }                  
@@ -65,7 +65,7 @@ pipeline {
                             def currentVersion = "3.18.${versionSprint}.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
-                            if(groovyScript.get_version('hotfix/lv-666') != currentVersion){
+                            if(groovyScript.call('hotfix/lv-666') != currentVersion){
                                 error 'Not Correct Version for hotfix branch!'
                             }     
                         }                  
@@ -77,7 +77,7 @@ pipeline {
                             def currentVersion = "3.19.25.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
-                            if(groovyScript.get_version('release/3.19.25') != currentVersion){
+                            if(groovyScript.call('release/3.19.25') != currentVersion){
                                 error 'Not Correct Version for release branch!'
                             }     
                         }                  
@@ -89,7 +89,7 @@ pipeline {
                             def currentVersion = "3.19.${versionSprint}.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
-                            if(groovyScript.get_version('develop') != currentVersion){
+                            if(groovyScript.call('develop') != currentVersion){
                                 error 'Not Correct Version for develop branch!'
                             }     
                         }                  
@@ -101,7 +101,7 @@ pipeline {
                             def currentVersion = "4.19.${versionSprint}.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
-                            if(groovyScript.get_version('feature/lv-333') != currentVersion){
+                            if(groovyScript.call('feature/lv-333') != currentVersion){
                                 error 'Not Correct Version for feature branch!'
                             }     
                         }                  
