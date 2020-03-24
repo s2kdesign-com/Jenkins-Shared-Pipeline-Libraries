@@ -38,7 +38,8 @@ def call(String branchName) {
 
     echo  "Building version ${returnVersion}"
 
-    currentBuild.rawBuild.project.setDisplayName("${returnVersion}")
+    //currentBuild.rawBuild.project.setDisplayName("${returnVersion}")
+    currentBuild.displayName = "${returnVersion}"
     return returnVersion
 }
 
