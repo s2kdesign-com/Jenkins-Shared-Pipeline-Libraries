@@ -6,7 +6,7 @@ pipeline {
 
         groovyScript = load "vars/get_version.groovy"
         
-       // PROJECT_VERSION = groovyScript.get_version('master') 
+        PROJECT_VERSION = get_version('master') 
     }
     stages {
         stage('Test Versions') {            

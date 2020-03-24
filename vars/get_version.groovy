@@ -41,3 +41,5 @@ def call(String branchName) {
     currentBuild.rawBuild.project.setDisplayName("${returnVersion}")
     return returnVersion
 }
+
+return this
