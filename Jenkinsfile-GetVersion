@@ -1,6 +1,10 @@
 pipeline {
     agent any
     environment {
+        versionMaster = libraryResource 'master_version'
+        versionSprint = "${versionMaster.split('\\.')[2].trim()}"
+
+        
         PROJECT_VERSION = get_version('master') 
     }
     stages {
@@ -19,8 +23,14 @@ pipeline {
                 stage('Test support/3.16.25') {
                     steps {                        
                         script{		
-                            if(get_version('support/3.16.25') != "3.16.25.${BUILD_NUMBER}"){
-                                error 'Not Correct Version for master branch!!'
+                            
+                            def groovyScript = load "vars/get_version.groovy"
+
+                            def currentVersion = "3.16.25.${BUILD_NUMBER}"
+                            echo  "Testing version ${currentVersion}"
+
+                            if(groovyScript.call('support/3.16.25') != currentVersion){
+                                error 'Not Correct Version for support branch!!'
                             }     
                         }                  
                     }
@@ -29,8 +39,13 @@ pipeline {
                 stage('Test support/3.17.25') {
                     steps {                        
                         script{		
-                            if(get_version('support/3.17.25') != "3.17.25.${BUILD_NUMBER}"){
-                                error 'Not Correct Version for master branch!!'
+                            
+                            def groovyScript = load "vars/get_version.groovy"
+                            def currentVersion = "3.17.25.${BUILD_NUMBER}"
+                            echo  "Testing version ${currentVersion}"
+
+                            if(groovyScript.call('support/3.17.25') != currentVersion){
+                                error 'Not Correct Version for support branch!!'
                             }     
                         }                  
                     }
@@ -39,7 +54,12 @@ pipeline {
                 stage('Test master branch') {
                     steps {                        
                         script{		
-                            if(get_version('master') != "3.18.25.${BUILD_NUMBER}"){
+                            
+                            def groovyScript = load "vars/get_version.groovy"
+                            def currentVersion = "3.18.${versionSprint}.${BUILD_NUMBER}"
+                            echo  "Testing version ${currentVersion}"
+
+                            if(groovyScript.call('master') != currentVersion){
                                 error 'Not Correct Version for master branch!!'
                             }     
                         }                  
@@ -48,7 +68,12 @@ pipeline {
                 stage('Test hotfix branch') {
                     steps {                        
                         script{		
-                            if(get_version('hotfix/lv-666') != "3.18.25.${BUILD_NUMBER}"){
+                            
+                            def groovyScript = load "vars/get_version.groovy"
+                            def currentVersion = "3.18.${versionSprint}.${BUILD_NUMBER}"
+                            echo  "Testing version ${currentVersion}"
+
+                            if(groovyScript.call('hotfix/lv-666') != currentVersion){
                                 error 'Not Correct Version for hotfix branch!'
                             }     
                         }                  
@@ -57,7 +82,12 @@ pipeline {
                 stage('Test release branch') {
                     steps {                        
                         script{		
-                            if(get_version('release/3.19.25') != "3.19.25.${BUILD_NUMBER}"){
+                            
+                            def groovyScript = load "vars/get_version.groovy"
+                            def currentVersion = "3.19.25.${BUILD_NUMBER}"
+                            echo  "Testing version ${currentVersion}"
+
+                            if(groovyScript.call('release/3.19.25') != currentVersion){
                                 error 'Not Correct Version for release branch!'
                             }     
                         }                  
@@ -66,7 +96,12 @@ pipeline {
                 stage('Test develop branch') {
                     steps {                        
                         script{		
-                            if(get_version('develop') != "3.19.25.${BUILD_NUMBER}"){
+                            
+                            def groovyScript = load "vars/get_version.groovy"
+                            def currentVersion = "3.19.${versionSprint}.${BUILD_NUMBER}"
+                            echo  "Testing version ${currentVersion}"
+
+                            if(groovyScript.call('develop') != currentVersion){
                                 error 'Not Correct Version for develop branch!'
                             }     
                         }                  
@@ -75,7 +110,12 @@ pipeline {
                 stage('Test feature branch') {
                     steps {                        
                         script{		
-                            if(get_version('feature/lv-333') != "4.19.25.${BUILD_NUMBER}"){
+                            
+                            def groovyScript = load "vars/get_version.groovy"
+                            def currentVersion = "4.19.${versionSprint}.${BUILD_NUMBER}"
+                            echo  "Testing version ${currentVersion}"
+
+                            if(groovyScript.call('feature/lv-333') != currentVersion){
                                 error 'Not Correct Version for feature branch!'
                             }     
                         }                  
@@ -83,5 +123,10 @@ pipeline {
                 }
             }
         }
+    }
+     post {
+            success {
+                jiraSendBuildInfo site: 'clcsdevelopment.atlassian.net'
+            }
     }
 }
