@@ -10,45 +10,34 @@ def call(String branchName) {
     ContextRegistry.registerDefaultContext(this)
 
     def versionMaster = libraryResource 'master_version'
-    def projectVersion = versionMaster.split('\\.').collect{it as int}
+    def projectVersion = versionMaster.split('\\.').collect{it as int}      
+
+    def returnVersion = "${projectVersion[0] + 1}.${projectVersion[1] + 1}.${projectVersion[2]}.${BUILD_NUMBER}"
 
     if (branchName == "master"){
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
-
-        echo  "using version ${returnVersion}"
-        return returnVersion
+        returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
     } 
     else if (branchName.startsWith("hotfix")) {
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
-
-        echo  "using version ${returnVersion}"
-        return returnVersion
+        returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
     }
     else if (branchName == "develop") {
-        def returnVersion = "${projectVersion[0]}.${projectVersion[1] + 1}.${projectVersion[2]}.${BUILD_NUMBER}"
-
-        echo  "using version ${returnVersion}"
-        return returnVersion
+        returnVersion = "${projectVersion[0]}.${projectVersion[1] + 1}.${projectVersion[2]}.${BUILD_NUMBER}"
     } 
     else if (branchName.startsWith("release")) {
         def branchVersion =   branchName.split('\\/')[1].split('\\.');
-        def returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${branchVersion[2]}.${BUILD_NUMBER}"
-
-        echo  "using version ${returnVersion}"
-        return returnVersion
+        returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${branchVersion[2]}.${BUILD_NUMBER}"
     }
     else if (branchName.startsWith("support"))
     {
         def branchVersion =   branchName.split('\\/')[1].split('\\.');
-        def returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${branchVersion[2]}.${BUILD_NUMBER}"
-
-        echo  "using version ${returnVersion}"
-        return returnVersion
+        returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${branchVersion[2]}.${BUILD_NUMBER}"
     }
     else {
-        def returnVersion = "${projectVersion[0] + 1}.${projectVersion[1] + 1}.${projectVersion[2]}.${BUILD_NUMBER}"
-
-        echo  "using version ${returnVersion}"
-        return returnVersion
+        returnVersion = "${projectVersion[0] + 1}.${projectVersion[1] + 1}.${projectVersion[2]}.${BUILD_NUMBER}"
     }
+
+    echo  "Building version ${returnVersion}"
+
+    currentBuild.rawBuild.project.setDisplayName("${returnVersion}")
+    return returnVersion
 }
