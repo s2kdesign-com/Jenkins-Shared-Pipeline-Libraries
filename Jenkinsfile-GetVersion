@@ -1,11 +1,12 @@
 pipeline {
     agent any
     environment {
-        PROJECT_VERSION = groovyScript.get_version('master') 
         versionMaster = libraryResource 'master_version'
         versionSprint = "${versionMaster.split('\\.')[2].trim()}"
 
         groovyScript = load "vars/get_version.groovy"
+        
+        PROJECT_VERSION = groovyScript.get_version('master') 
     }
     stages {
         stage('Test Versions') {            
