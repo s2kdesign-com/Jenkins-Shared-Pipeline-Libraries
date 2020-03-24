@@ -3,7 +3,7 @@ pipeline {
     environment {
         PROJECT_VERSION = get_version('master') 
         versionMaster = libraryResource 'master_version'
-        versionSprint = versionMaster.split('\\.')[2]
+        versionSprint = "${versionMaster.split('\\.')[2]}"
     }
     stages {
         stage('Test Versions') {            
