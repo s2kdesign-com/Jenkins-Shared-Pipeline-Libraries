@@ -4,7 +4,6 @@ pipeline {
         versionMaster = libraryResource 'master_version'
         versionSprint = "${versionMaster.split('\\.')[2].trim()}"
 
-        groovyScript = load "vars/get_version.groovy"
         
         PROJECT_VERSION = get_version('master') 
     }
@@ -24,6 +23,9 @@ pipeline {
                 stage('Test support/3.16.25') {
                     steps {                        
                         script{		
+                            
+                            def groovyScript = load "vars/get_version.groovy"
+
                             def currentVersion = "3.16.25.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
@@ -37,6 +39,8 @@ pipeline {
                 stage('Test support/3.17.25') {
                     steps {                        
                         script{		
+                            
+                            def groovyScript = load "vars/get_version.groovy"
                             def currentVersion = "3.17.25.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
@@ -50,6 +54,8 @@ pipeline {
                 stage('Test master branch') {
                     steps {                        
                         script{		
+                            
+                            def groovyScript = load "vars/get_version.groovy"
                             def currentVersion = "3.18.${versionSprint}.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
@@ -62,6 +68,8 @@ pipeline {
                 stage('Test hotfix branch') {
                     steps {                        
                         script{		
+                            
+                            def groovyScript = load "vars/get_version.groovy"
                             def currentVersion = "3.18.${versionSprint}.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
@@ -74,6 +82,8 @@ pipeline {
                 stage('Test release branch') {
                     steps {                        
                         script{		
+                            
+                            def groovyScript = load "vars/get_version.groovy"
                             def currentVersion = "3.19.25.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
@@ -86,6 +96,8 @@ pipeline {
                 stage('Test develop branch') {
                     steps {                        
                         script{		
+                            
+                            def groovyScript = load "vars/get_version.groovy"
                             def currentVersion = "3.19.${versionSprint}.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
@@ -98,6 +110,8 @@ pipeline {
                 stage('Test feature branch') {
                     steps {                        
                         script{		
+                            
+                            def groovyScript = load "vars/get_version.groovy"
                             def currentVersion = "4.19.${versionSprint}.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
