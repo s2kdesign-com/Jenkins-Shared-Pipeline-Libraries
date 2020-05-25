@@ -17,10 +17,10 @@ Support and Release branches are taken from branch name:
    - release/3.19.25 - *.**.**.BUILD_NUMBER = 3.19.25.0
    - release/4.0.33  - *.**.**.BUILD_NUMBER = 4.0.33.0
 
-Defined versions use file master_version (3.19.33):
-   - master Branch   - *.**.**.BUILD_NUMBER = 3.19.33.1
-   - hotfix Branch   - *.**.**.BUILD_NUMBER = 3.19.33.0
-   
+Defined versions use file master_version (3.18.33):
+   - master Branch   - *.**.**.BUILD_NUMBER = 3.18.33.1
+   - hotfix Branch   - *.**.**.BUILD_NUMBER = 3.18.33.0
+
 This branches use file develop_version (4.0):
    - develop Branch  - *.**.**.BUILD_NUMBER = 4.0.33.1
    - feature Branch  - *.+1.**.BUILD_NUMBER = 4.1.33.1
