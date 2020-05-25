@@ -11,12 +11,16 @@ After that go to Jenkins -> Configure System and add the settings from the pictu
 GitFlow Versioning in Jenkinsfile:
 ```
 - get_version(String branchName)
+Support and Release branches are taken from branch name:
+   - support/3.16.25 - *.**.**.BUILD_NUMBER = 3.16.25.1
+   - support/3.17.25 - *.**.**.BUILD_NUMBER = 3.17.25.1
+   - release/3.19.25 - *.**.**.BUILD_NUMBER = 3.19.25.0
+   - release/4.0.33  - *.**.**.BUILD_NUMBER = 4.0.33.0
+
 Defined versions use file master_version (3.19.33):
-   - support/3.16.25 - 3.16.25.BUILD_NUMBER = 3.16.33.0
-   - support/3.17.25 - 3.17.25.BUILD_NUMBER = 3.17.33.0
-   - master Branch   - 3.18.25.BUILD_NUMBER = 3.18.33.0
-   - hotfix Branch   - *.**.**.BUILD_NUMBER = 3.18.33.1
-   - release/3.19.25 - *.**.**.BUILD_NUMBER = 3.19.33.1
+   - master Branch   - *.**.**.BUILD_NUMBER = 3.19.33.1
+   - hotfix Branch   - *.**.**.BUILD_NUMBER = 3.19.33.0
+   
 This branches use file develop_version (4.0):
    - develop Branch  - *.**.**.BUILD_NUMBER = 4.0.33.1
    - feature Branch  - *.+1.**.BUILD_NUMBER = 4.1.33.1
