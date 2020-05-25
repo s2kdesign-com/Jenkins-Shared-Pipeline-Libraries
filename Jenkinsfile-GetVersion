@@ -98,7 +98,7 @@ pipeline {
                         script{		
                             
                             def groovyScript = load "vars/get_version.groovy"
-                            def currentVersion = "3.19.${versionSprint}.${BUILD_NUMBER}"
+                            def currentVersion = "4.0.${versionSprint}.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
                             if(groovyScript.call('develop') != currentVersion){
@@ -112,7 +112,7 @@ pipeline {
                         script{		
                             
                             def groovyScript = load "vars/get_version.groovy"
-                            def currentVersion = "4.19.${versionSprint}.${BUILD_NUMBER}"
+                            def currentVersion = "4.1.${versionSprint}.${BUILD_NUMBER}"
                             echo  "Testing version ${currentVersion}"
 
                             if(groovyScript.call('feature/lv-333') != currentVersion){

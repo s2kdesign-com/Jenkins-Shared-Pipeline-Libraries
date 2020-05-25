@@ -9,20 +9,20 @@ import org.s2kdesign.ioc.ContextRegistry
 def call(String branchName) {
     ContextRegistry.registerDefaultContext(this)
 
-    def versionMaster = libraryResource 'master_version'
-    def projectVersion = versionMaster.split('\\.').collect{it as int}      
+    def versionMasterString = libraryResource 'master_version'
+    def versionMaster = versionMasterString.split('\\.').collect{it as int}      
 
-    def returnVersion = "${projectVersion[0] + 1}.${projectVersion[1] + 1}.${projectVersion[2]}.${BUILD_NUMBER}"
+    def versionDevelopString = libraryResource 'develop_version'
+    def versionDevelop = versionDevelopString.split('\\.').collect{it as int}   
+
+    def returnVersion = "${versionMaster[0] + 1}.${versionMaster[1] + 1}.${versionMaster[2]}.${BUILD_NUMBER}"
 
     if (branchName == "master"){
-        returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
+        returnVersion = "${versionMaster[0]}.${versionMaster[1]}.${versionMaster[2]}.${BUILD_NUMBER}"
     } 
     else if (branchName.startsWith("hotfix")) {
-        returnVersion = "${projectVersion[0]}.${projectVersion[1]}.${projectVersion[2]}.${BUILD_NUMBER}"
+        returnVersion = "${versionMaster[0]}.${versionMaster[1]}.${versionMaster[2]}.${BUILD_NUMBER}"
     }
-    else if (branchName == "develop") {
-        returnVersion = "${projectVersion[0]}.${projectVersion[1] + 1}.${projectVersion[2]}.${BUILD_NUMBER}"
-    } 
     else if (branchName.startsWith("release")) {
         def branchVersion =   branchName.split('\\/')[1].split('\\.');
         returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${branchVersion[2]}.${BUILD_NUMBER}"
@@ -32,8 +32,13 @@ def call(String branchName) {
         def branchVersion =   branchName.split('\\/')[1].split('\\.');
         returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${branchVersion[2]}.${BUILD_NUMBER}"
     }
+    else if (branchName == "develop") {
+        // We use versionDevelop for developMajor.developMinor.masterSprintNumber
+        returnVersion = "${versionDevelop[0]}.${versionDevelop[1]}.${versionMaster[2]}.${BUILD_NUMBER}"
+    } 
     else {
-        returnVersion = "${projectVersion[0] + 1}.${projectVersion[1] + 1}.${projectVersion[2]}.${BUILD_NUMBER}"
+        // feature and other shits
+        returnVersion = "${versionDevelop[0]}.${versionDevelop[1] + 1}.${versionMaster[2]}.${BUILD_NUMBER}"
     }
 
     echo  "Building version ${returnVersion}"
