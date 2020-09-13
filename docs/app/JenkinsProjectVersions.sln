@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JenkinsProjectVersions.Server", "Server\JenkinsProjectVersions.Server.csproj", "{D38627D3-A556-4C89-8E28-8B0D827C96F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JenkinsProjectVersions.Client", "Client\JenkinsProjectVersions.Client.csproj", "{F53806EB-B5FF-49F6-8404-53AD69D04EB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JenkinsProjectVersions.Shared", "Shared\JenkinsProjectVersions.Shared.csproj", "{066D43C0-BC32-4CC3-9CBD-E938C63F05A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D38627D3-A556-4C89-8E28-8B0D827C96F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D38627D3-A556-4C89-8E28-8B0D827C96F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D38627D3-A556-4C89-8E28-8B0D827C96F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D38627D3-A556-4C89-8E28-8B0D827C96F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F53806EB-B5FF-49F6-8404-53AD69D04EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F53806EB-B5FF-49F6-8404-53AD69D04EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F53806EB-B5FF-49F6-8404-53AD69D04EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F53806EB-B5FF-49F6-8404-53AD69D04EB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{066D43C0-BC32-4CC3-9CBD-E938C63F05A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{066D43C0-BC32-4CC3-9CBD-E938C63F05A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{066D43C0-BC32-4CC3-9CBD-E938C63F05A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{066D43C0-BC32-4CC3-9CBD-E938C63F05A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CC981698-ECA5-4C58-8078-616CB2AD4066}
+	EndGlobalSection
+EndGlobal
