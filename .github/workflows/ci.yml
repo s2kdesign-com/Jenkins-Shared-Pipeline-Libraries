@@ -20,7 +20,7 @@ jobs:
 
         # Generate the website
         - name: Publish
-          run: dotnet publish docs/app/Server/JenkinsProjectVersions.Server.csproj --configuration Release
+          run: dotnet publish docs/app/ProjectVersionsDemo.csproj --configuration Release
 
         # Publish the website
         - name: GitHub Pages action
@@ -29,7 +29,7 @@ jobs:
           with:
             github_token: ${{ secrets.PUBLISH_TOKEN }}
             publish_branch: gh-pages
-            publish_dir: docs/app/Server/bin/Release/netcoreapp3.1/publish/wwwroot
+            publish_dir: docs/app/bin/Release/netstandard2.1/publish/wwwroot
             allow_empty_commit: false
             keep_files: false
             force_orphan: true
