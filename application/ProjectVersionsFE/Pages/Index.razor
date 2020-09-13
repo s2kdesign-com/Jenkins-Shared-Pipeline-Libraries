@@ -1,0 +1,16 @@
+﻿@page "/"
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+<h1>Hello, world!</h1>
+Jenkins HOST URL
+@Configuration["jenkins:host"]
+<br />
+Jenkins User
+@Configuration["jenkins:user"]
+<br />
+Jenkins Password
+@Configuration["jenkins:password"]
+<br />
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />

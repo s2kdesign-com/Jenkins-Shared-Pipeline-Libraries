@@ -14,13 +14,34 @@ jobs:
           with:
             dotnet-version: 3.1.x
 
+        - name: String Replace JENKINS_HOST_URL
+          uses: bejoistic/str-replace@v1.0.2
+          with:
+            include: "docs/application/ProjectVersionsFE/appsettings.json"
+            find: "JENKINS_HOST_URL"
+            replace: ${{ secrets.JENKINS_HOST_URL }}
+
+        - name: String Replace JENKINS_USER
+          uses: bejoistic/str-replace@v1.0.2
+          with:
+            include: "docs/application/ProjectVersionsFE/appsettings.json"
+            find: "JENKINS_USER"
+            replace: ${{ secrets.JENKINS_USER }}
+
+        - name: String Replace JENKINS_PASSWORD
+          uses: bejoistic/str-replace@v1.0.2
+          with:
+            include: "docs/application/ProjectVersionsFE/appsettings.json"
+            find: "JENKINS_PASSWORD"
+            replace: ${{ secrets.JENKINS_PASSWORD }}
+
         # Run tests
         #- name: Test
         #  run: dotnet test
 
         # Generate the website
         - name: Publish
-          run: dotnet publish docs/app/ProjectVersionsDemo.csproj --configuration Release
+          run: dotnet publish docs/application/ProjectVersionsFE/ProjectVersionsFE.csproj --configuration Release
 
         # Publish the website
         - name: GitHub Pages action
@@ -29,7 +50,7 @@ jobs:
           with:
             github_token: ${{ secrets.PUBLISH_TOKEN }}
             publish_branch: gh-pages
-            publish_dir: docs/app/bin/Release/netstandard2.1/publish/wwwroot
+            publish_dir: docs/application/ProjectVersionsFE/bin/Release/netstandard2.1/publish/wwwroot
             allow_empty_commit: false
             keep_files: false
             force_orphan: true
