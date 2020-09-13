@@ -34,4 +34,4 @@ jobs:
             keep_files: false
             force_orphan: true
             # TODO uncomment the following line if you have a custom domain name
-            # cname: demo.meziantou.net
+            cname: versions.s2kdesign.com
