@@ -17,7 +17,7 @@ def call(String branchName) {
 
     def returnVersion = "${versionMaster[0] + 1}.${versionMaster[1] + 1}.${versionMaster[2]}.${BUILD_NUMBER}"
 
-    if (branchName == "master"){
+    if (branchName == "master" || branchName == "main"  ){
         returnVersion = "${versionMaster[0]}.${versionMaster[1]}.${versionMaster[2]}.${BUILD_NUMBER}"
     } 
     else if (branchName.startsWith("hotfix")) {
