@@ -32,6 +32,11 @@ def call(String branchName) {
         def branchVersion =   branchName.split('\\/')[1].split('\\.');
         returnVersion = "${branchVersion[0]}.${branchVersion[1]}.${branchVersion[2]}.${BUILD_NUMBER}"
     }
+    else if (branchName.startsWith("former"))
+    {
+        def branchVersion =   branchName.split('\\/')[1].split('\\.');
+        returnVersion = "${branchVersion[0]}.${branchVersion[1]}.0.${BUILD_NUMBER}"
+    }
     else if (branchName == "develop") {
         // We use versionDevelop for developMajor.developMinor.masterSprintNumber
         returnVersion = "${versionDevelop[0]}.${versionDevelop[1]}.${versionMaster[2]}.${BUILD_NUMBER}"
