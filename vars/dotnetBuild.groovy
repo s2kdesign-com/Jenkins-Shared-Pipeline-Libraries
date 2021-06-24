@@ -7,7 +7,8 @@ def call(body) {
     body()
 
     // now build, based on the configuration provided
-    stage('Publish Project') {           
+    node {
+    stage('Build') {           
             bat 'dotnet publish '+ PROJECT_PATH +' -c Debug -o Publish/Debug /P:PublishWithAspNetCoreTargetManifest=false /P:AssemblyVersion='+ PROJECT_VERSION +' /P:Version='+ PROJECT_VERSION 
             bat 'dotnet publish '+ PROJECT_PATH +' -c Release -o Publish/Release /P:PublishWithAspNetCoreTargetManifest=false /P:AssemblyVersion='+ PROJECT_VERSION +' /P:Version='+ PROJECT_VERSION 
         
@@ -26,6 +27,7 @@ def call(body) {
     options {
         // make sure we only keep 50 builds at a time, so we don't fill up our storage!
             buildDiscarder(logRotator(numToKeepStr:'50'))
+    }
     }
     
 }
