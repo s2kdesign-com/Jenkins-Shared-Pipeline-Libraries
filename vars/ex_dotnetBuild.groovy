@@ -19,8 +19,8 @@ def call(String projectName, String solutionPath) {
                 
             stage('Publish Project') {
                 steps {                    
-                    bat 'dotnet publish '+ PROJECT_PATH +' -c Debug -o ../../Publish/Debug /P:AssemblyVersion='+ PROJECT_VERSION +' /P:Version='+ PROJECT_VERSION 
-                    bat 'dotnet publish '+ PROJECT_PATH +' -c Release -o ../../Publish/Release /P:AssemblyVersion='+ PROJECT_VERSION +' /P:Version='+ PROJECT_VERSION 
+                    bat 'dotnet publish '+ PROJECT_PATH +' -c Debug -o Publish/Debug /P:PublishWithAspNetCoreTargetManifest=false /P:AssemblyVersion='+ PROJECT_VERSION +' /P:Version='+ PROJECT_VERSION 
+                    bat 'dotnet publish '+ PROJECT_PATH +' -c Release -o Publish/Release /P:PublishWithAspNetCoreTargetManifest=false /P:AssemblyVersion='+ PROJECT_VERSION +' /P:Version='+ PROJECT_VERSION 
                 }
             }
 
