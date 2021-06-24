@@ -12,8 +12,8 @@ def call(String projectName, String solutionPath) {
         environment {
             // Version is defined in external pipeline library https://github.com/Magik3a/Jenkinsfile_Gitflow_Versioning
             PROJECT_VERSION = get_version(GIT_BRANCH)
-            PROJECT_PATH = solutionPath
-            PROJECT_NAME = projectName
+            PROJECT_PATH = "${solutionPath}"
+            PROJECT_NAME = "${projectName}"
             }
         stages {
                 
