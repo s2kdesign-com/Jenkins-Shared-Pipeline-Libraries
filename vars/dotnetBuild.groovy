@@ -7,15 +7,7 @@ def call(body) {
     body()
 
     // now build, based on the configuration provided
-    pipeline {
-    agent any
-        environment {
-            // Version is defined in external pipeline library https://github.com/Magik3a/Jenkinsfile_Gitflow_Versioning
-            PROJECT_VERSION = get_version(GIT_BRANCH)
-            PROJECT_PATH = "${config.solutionPath}"
-            PROJECT_NAME = "${config.projectName}"
-            }
-        stages {
+   
                 
             stage('Publish Project') {
                 steps {                    
@@ -35,7 +27,7 @@ def call(body) {
                 }        
             }
                     
-        }
+        
 
         options {
             // make sure we only keep 50 builds at a time, so we don't fill up our storage!
