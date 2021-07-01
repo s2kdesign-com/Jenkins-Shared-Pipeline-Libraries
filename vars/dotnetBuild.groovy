@@ -24,10 +24,6 @@ def call(body) {
              
     }
 
-    options {
-        // make sure we only keep 50 builds at a time, so we don't fill up our storage!
-            buildDiscarder(logRotator(numToKeepStr:'50'))
-    }
     }
     
 }
