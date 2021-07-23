@@ -38,7 +38,7 @@ def call(body) {
                                 }                
                             }
                             steps {     
-                                copyArtifacts(config.projectName: currentBuild.projectName, filter: "${config.projectName}.zip", selector: lastSuccessful())
+                                copyArtifacts(projectName: currentBuild.projectName, filter: "${config.projectName}.zip", selector: lastSuccessful())
                                 archiveArtifacts artifacts: "${config.projectName}.zip", caseSensitive: false
                             }          
                         } 
