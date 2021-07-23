@@ -32,7 +32,7 @@ def call(body) {
                                 not {
                                     anyOf {
                                         expression{env.BUILD_NUMBER == '1'}
-                                        changeset "${projectName}/**/*.*"
+                                        changeset "${regex}"
                                         expression{ currentBuild.previousSuccessfulBuild == null }
                                     }      
                                 }                
