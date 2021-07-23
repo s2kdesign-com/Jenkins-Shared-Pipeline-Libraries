@@ -8,38 +8,38 @@ def call(body) {
 
     // now build, based on the configuration provided
    pipeline {
-        stage("Get ${projectName}.zip") {
+        stage("Get ${config.projectName}.zip") {
                     parallel {
-                        stage("Publish ${projectName} TESTS") {
+                        stage("Publish ${config.projectName} TESTS") {
                             when{
                                 anyOf {
                                     expression{env.BUILD_NUMBER == '1'}
-                                    changeset "${regex}"
+                                    changeset "${config.regex}"
                                     expression{ currentBuild.previousSuccessfulBuild == null }
                                 }
                             }
                             steps {
                                 script{	
-                                    bat  "\"${tool 'MsBuild'}\" ${command} "
+                                    bat  "\"${tool 'MsBuild'}\" ${config.command} "
                                 }
 
-                                zip zipFile: "${projectName}.zip", archive: false, dir: "${outputDir}"
-                                archiveArtifacts artifacts: "${projectName}.zip", fingerprint: true
+                                zip zipFile: "${config.projectName}.zip", archive: false, dir: "${config.outputDir}"
+                                archiveArtifacts artifacts: "${config.projectName}.zip", fingerprint: true
                             }
                         } 
-                        stage("Get ${projectName}.zip from prevuis build") {
+                        stage("Get ${config.projectName}.zip from prevuis build") {
                             when{
                                 not {
                                     anyOf {
                                         expression{env.BUILD_NUMBER == '1'}
-                                        changeset "${regex}"
+                                        changeset "${config.regex}"
                                         expression{ currentBuild.previousSuccessfulBuild == null }
                                     }      
                                 }                
                             }
                             steps {     
-                                copyArtifacts(projectName: currentBuild.projectName, filter: "${projectName}.zip", selector: lastSuccessful())
-                                archiveArtifacts artifacts: "${projectName}.zip", caseSensitive: false
+                                copyArtifacts(config.projectName: currentBuild.projectName, filter: "${config.projectName}.zip", selector: lastSuccessful())
+                                archiveArtifacts artifacts: "${config.projectName}.zip", caseSensitive: false
                             }          
                         } 
                     }
