@@ -8,43 +8,40 @@ def call(body) {
 
     // now build, based on the configuration provided
    pipeline {
-        stage("Get ${config.projectName}.zip") {
-                    parallel {
-                        stage("Publish ${config.projectName} TESTS") {
-                            when{
-                                anyOf {
-                                    expression{env.BUILD_NUMBER == '1'}
-                                    changeset "${config.regex}"
-                                    expression{ currentBuild.previousSuccessfulBuild == null }
-                                }
-                            }
-                            steps {
-                                script{	
-                                    bat  "\"${tool 'MsBuild'}\" ${config.command} "
-                                }
-
-                                zip zipFile: "${config.projectName}.zip", archive: false, dir: "${config.outputDir}"
-                                archiveArtifacts artifacts: "${config.projectName}.zip", fingerprint: true
-                            }
-                        } 
-                        stage("Get ${config.projectName}.zip from prevuis build") {
-                            when{
-                                not {
-                                    anyOf {
-                                        expression{env.BUILD_NUMBER == '1'}
-                                        changeset "${config.regex}"
-                                        expression{ currentBuild.previousSuccessfulBuild == null }
-                                    }      
-                                }                
-                            }
-                            steps {     
-                                copyArtifacts(projectName: currentBuild.projectName, filter: "${config.projectName}.zip", selector: lastSuccessful())
-                                archiveArtifacts artifacts: "${config.projectName}.zip", caseSensitive: false
-                            }          
-                        } 
+            stage("Publish ${config.projectName} TESTS") {
+                when{
+                    anyOf {
+                        expression{env.BUILD_NUMBER == '1'}
+                        changeset "${config.regex}"
+                        expression{ currentBuild.previousSuccessfulBuild == null }
                     }
                 }
+                steps {
+                    script{	
+                        bat  "\"${tool 'MsBuild'}\" ${config.command} "
+                    }
 
-            }
+                    zip zipFile: "${config.projectName}.zip", archive: false, dir: "${config.outputDir}"
+                    archiveArtifacts artifacts: "${config.projectName}.zip", fingerprint: true
+                }
+            } 
+            stage("Get ${config.projectName}.zip from prevuis build") {
+                when{
+                    not {
+                        anyOf {
+                            expression{env.BUILD_NUMBER == '1'}
+                            changeset "${config.regex}"
+                            expression{ currentBuild.previousSuccessfulBuild == null }
+                        }      
+                    }                
+                }
+                steps {     
+                    copyArtifacts(projectName: currentBuild.projectName, filter: "${config.projectName}.zip", selector: lastSuccessful())
+                    archiveArtifacts artifacts: "${config.projectName}.zip", caseSensitive: false
+                }          
+            } 
+             
+
+        }
     
 }
