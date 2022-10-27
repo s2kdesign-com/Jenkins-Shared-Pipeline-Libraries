@@ -17,8 +17,11 @@ steps:
      $MasterVersion= Get-Content resources/master_version -Raw
      $temp=$MasterVersion.Split('.')[1]
      $DevelopVersion=$MasterVersion.Split('.')[0]+'.'+ ([int]$MasterVersion.Split('.')[1] + 1) +'.'+ $MasterVersion.Split('.')[2]
-     write-host $DevelopVersion
-     Write-Host "##vso[task.setvariable variable=DevelopVersion;isOutput=true;]$DevelopVersion"
-     Write-Host "##vso[task.setvariable variable=MasterVersion;isOutput=true;]$MasterVersion"
-
+     $MasterVersion | Out-File MasterVersion.txt
+     $DevelopVersion | Out-File DevelopVersion.txt
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
     workingDirectory: '$(Build.SourcesDirectory)'
