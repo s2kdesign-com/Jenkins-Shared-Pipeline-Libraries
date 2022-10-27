@@ -15,11 +15,11 @@ steps:
     targetType: 'inline'
     workingDirectory: '$(Build.SourcesDirectory)'
     script: |
-     $MasterVersion= Get-Content resources/master_version -Raw
+     $MasterVersion= Get-Content $(Build.SourcesDirectory)/resources/master_version -Raw
      $temp=$MasterVersion.Split('.')[1]
      $DevelopVersion=$MasterVersion.Split('.')[0]+'.'+ ([int]$MasterVersion.Split('.')[1] + 1) +'.'+ $MasterVersion.Split('.')[2]
-     $MasterVersion | Out-File MasterVersion.txt
-     $DevelopVersion | Out-File DevelopVersion.txt
+     $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt
+     $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt
     
 - task: PublishBuildArtifacts@1
   inputs:
