@@ -13,5 +13,6 @@ steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
+    workingDirectory: $(Build.SourcesDirectory)
     script: |
       cat Jenkins-Shared-Pipeline-Libraries/resources/master_version
