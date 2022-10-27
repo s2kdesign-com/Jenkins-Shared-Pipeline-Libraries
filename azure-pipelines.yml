@@ -15,4 +15,4 @@ steps:
     targetType: 'inline'
     workingDirectory: $(Build.SourcesDirectory)
     script: |
-      cat Jenkins-Shared-Pipeline-Libraries/resources/master_version
+      cat $(Build.SourcesDirectory)/resources/master_version
