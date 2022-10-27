@@ -10,9 +10,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Bash@3
+- task: PowerShell@2
   inputs:
     targetType: 'inline'
-    workingDirectory: $(Build.SourcesDirectory)
     script: |
-      cat $(Build.SourcesDirectory)/resources/master_version
+     $MasterVersion= Get-Content resources/master_version -Raw
+     $temp=$MasterVersion.Split('.')[1]
+     $DevelopVersion=$MasterVersion.Split('.')[0]+'.'+ ([int]$MasterVersion.Split('.')[1] + 1) +'.'+ $MasterVersion.Split('.')[2]
+     write-host $DevelopVersion
+    workingDirectory: '$(Build.SourcesDirectory)'
