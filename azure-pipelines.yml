@@ -20,9 +20,14 @@ steps:
      $DevelopVersion=$MasterVersion.Split('.')[0]+'.'+ ([int]$MasterVersion.Split('.')[1] + 1) +'.'+ $MasterVersion.Split('.')[2]
      Write-Host $MasterVersion
      Write-Host $DevelopVersion
-     $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt
-     $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt
-    
+     $MasterVersion | Out-File MasterVersion.txt
+     $DevelopVersion | Out-File DevelopVersion.txt
+
+- task: CopyFiles@2
+  inputs:
+     Contents: '**\*.txt'
+     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+     flattenFolders: true
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
