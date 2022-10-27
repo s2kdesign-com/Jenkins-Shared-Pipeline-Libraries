@@ -18,14 +18,14 @@ steps:
      $MasterVersion= Get-Content $(Build.SourcesDirectory)/resources/master_version -Raw
      $temp=$MasterVersion.Split('.')[1]
      $DevelopVersion=$MasterVersion.Split('.')[0]+'.'+ ([int]$MasterVersion.Split('.')[1] + 1) +'.'+ $MasterVersion.Split('.')[2]
-     Write-Host $MasterVersion > MasterVersion.txt
-     Write-Host $DevelopVersion > DevelopVersion.txt
-     #$MasterVersion | Out-File MasterVersion.txt
-     #$DevelopVersion | Out-File DevelopVersion.txt
+     Write-Host $MasterVersion 
+     Write-Host $DevelopVersion 
+     $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt
+     $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt
 
 - task: CopyFiles@2
   inputs:
-     Contents: '**\*.txt'
+     Contents: '$(Build.SourcesDirectory)/*.txt'
      TargetFolder: '$(Build.ArtifactStagingDirectory)'
      flattenFolders: true
 - task: PublishBuildArtifacts@1
