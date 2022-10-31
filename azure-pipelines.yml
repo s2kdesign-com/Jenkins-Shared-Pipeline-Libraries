@@ -26,6 +26,13 @@ steps:
      $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt
      $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt
 
+- task: CreateUpdateKeyVaultSecret@0
+  inputs:
+    azureSubscriptionEndpoint: 'KVAzure'
+    resourceGroupName: 'VSG-DEV'
+    keyVaultName: 'VersionsKV'
+    secretName: 'MasterVersion'
+    secretValue: '$env:MasterVer'
 - task: CopyFiles@2
   inputs:
      Contents: '$(Build.SourcesDirectory)/*.txt'
