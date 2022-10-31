@@ -16,23 +16,15 @@ steps:
     workingDirectory: '$(Build.SourcesDirectory)'
     script: |
      $MasterVersion= Get-Content $(Build.SourcesDirectory)/resources/master_version -Raw
-     #$temp=$MasterVersion.Split('.')[1]
      $DevelopVersion=$MasterVersion.Split('.')[0]+'.'+ ([int]$MasterVersion.Split('.')[1] + 1) +'.'+ $MasterVersion.Split('.')[2]
      Write-Host $MasterVersion
      Write-Host $DevelopVersion
-     Write-Host "##vso[task.setvariable variable=MasterVar]$MasterVersion"
-     Write-Host "##vso[task.setvariable variable=DevelopVar]$DevelopVersion"
+     #Write-Host "##vso[task.setvariable variable=MasterVar]$MasterVersion"
+     #Write-Host "##vso[task.setvariable variable=DevelopVar]$DevelopVersion"
+     $env:MasterVer = $MasterVersion
+     $env:DevVer = $DevelopVersion
      $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt
      $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt
-- task: AzurePowerShell@5
-  inputs:
-    azureSubscription: 'KVAzure'
-    ScriptType: 'InlineScript'
-    Inline: |
-      Register-PSRepository -Default
-      install-module az.keyvault -scope AllUsers
-      Set-AzKeyVaultSecret -VaultName ''VersionsKV'' -Name ''MasterVersion'' -SecretValue $(MasterVersion)
-    preferredAzurePowerShellVersion: '5.1.2'
 
 - task: CopyFiles@2
   inputs:
