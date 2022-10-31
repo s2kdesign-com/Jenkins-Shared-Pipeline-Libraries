@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: PowerShell@2
+- task: Set Versions
   inputs:
     targetType: 'inline'
     workingDirectory: '$(Build.SourcesDirectory)'
@@ -24,7 +24,7 @@ steps:
      $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt
      $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt
 
-- task: CreateUpdateKeyVaultSecret@0
+- task: Update MasterVersion
   inputs:
     azureSubscriptionEndpoint: 'KVAzure'
     resourceGroupName: 'VSG-DEV'
@@ -32,7 +32,7 @@ steps:
     secretName: 'MasterVersion'
     secretValue: '$(MasterVar)'
 
-- task: CreateUpdateKeyVaultSecret@0
+- task: Update DevelopVersion
   inputs:
     azureSubscriptionEndpoint: 'KVAzure'
     resourceGroupName: 'VSG-DEV'
