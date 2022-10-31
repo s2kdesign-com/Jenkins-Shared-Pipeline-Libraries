@@ -38,7 +38,7 @@ steps:
     resourceGroupName: 'VSG-DEV'
     keyVaultName: 'VersionsKV'
     secretName: 'MasterVersion'
-    secretValue: $(secret.Master)
+    secretValue: '$env:Master'
 - task: CopyFiles@2
   inputs:
      Contents: '$(Build.SourcesDirectory)/*.txt'
