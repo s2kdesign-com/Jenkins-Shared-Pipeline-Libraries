@@ -31,14 +31,14 @@ steps:
     resourceGroupName: 'VSG-DEV'
     keyVaultName: 'VersionsKV'
     secretName: 'DevelopVersion'
-    secretValue: $(Develop)
+    secretValue: $Develop
 - task: CreateUpdateKeyVaultSecret@0
   inputs:
     azureSubscriptionEndpoint: 'KVAzure'
     resourceGroupName: 'VSG-DEV'
     keyVaultName: 'VersionsKV'
     secretName: 'MasterVersion'
-    secretValue: $(Master)
+    secretValue: $Master
 - task: CopyFiles@2
   inputs:
      Contents: '$(Build.SourcesDirectory)/*.txt'
