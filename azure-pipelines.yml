@@ -22,10 +22,15 @@ steps:
      Write-Host $DevelopVersion
      Write-Host "##vso[task.setvariable variable=MasterVar]$MasterVersion"
      Write-Host "##vso[task.setvariable variable=DevelopVar]$DevelopVersion"
-     Set-AzKeyVaultSecret -VaultName 'VersionsKV' -Name 'MasterVersion' -SecretValue $MasterVersion
-
      $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt
      $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt
+
+- task: AzurePowerShell@5
+  inputs:
+    azureSubscription: 'KVAzure'
+    ScriptType: 'InlineScript'
+    Inline: 'Set-AzKeyVaultSecret -VaultName ''VersionsKV'' -Name ''MasterVersion'' -SecretValue $(MasterVersion)'
+    preferredAzurePowerShellVersion: '5.1.2'
 
 - task: CopyFiles@2
   inputs:
