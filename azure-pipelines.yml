@@ -19,17 +19,15 @@ steps:
      $DevelopVersion=$MasterVersion.Split('.')[0]+'.'+ ([int]$MasterVersion.Split('.')[1] + 1) +'.'+ $MasterVersion.Split('.')[2]
      Write-Host $MasterVersion
      Write-Host $DevelopVersion
-     #Write-Host "##vso[task.setvariable variable=MasterVar]$MasterVersion"
-     #Write-Host "##vso[task.setvariable variable=DevelopVar]$DevelopVersion"
-     $env:MasterVer = $MasterVersion
-     $env:DevVer = $DevelopVersion
+     Write-Host "##vso[task.setvariable variable=MasterVar]$MasterVersion"
+     Write-Host "##vso[task.setvariable variable=DevelopVar]$DevelopVersion"
      $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt
      $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt
 
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
-    script: 'Write-Host dev ver s $env:DevVer'
+    script: 'Write-Host dev ver s $(MasterVar)'
 - task: CreateUpdateKeyVaultSecret@0
   inputs:
     azureSubscriptionEndpoint: 'KVAzure'
