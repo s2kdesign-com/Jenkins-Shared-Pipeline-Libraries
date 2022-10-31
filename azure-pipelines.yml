@@ -20,8 +20,8 @@ steps:
      $DevelopVersion=$MasterVersion.Split('.')[0]+'.'+ ([int]$MasterVersion.Split('.')[1] + 1) +'.'+ $MasterVersion.Split('.')[2]
      Write-Host $MasterVersion 
      Write-Host $DevelopVersion
-     Write-Host "##vso[task.setvariable variable=MasterVersion;]$MasterVersion"
-     Write-Host "##vso[task.setvariable variable=DevelopVersion;]$DevelopVersion"
+     Write-Host "##vso[task.setvariable variable=Master;isoutput=true]$MasterVersion"
+     Write-Host "##vso[task.setvariable variable=Develop;isoutput=true]$DevelopVersion"
      $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt
      $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt
 
@@ -31,14 +31,14 @@ steps:
     resourceGroupName: 'VSG-DEV'
     keyVaultName: 'VersionsKV'
     secretName: 'DevelopVersion'
-    secretValue: '$DevelopVersion'
+    secretValue: '$(Develop)'
 - task: CreateUpdateKeyVaultSecret@0
   inputs:
     azureSubscriptionEndpoint: 'KVAzure'
     resourceGroupName: 'VSG-DEV'
     keyVaultName: 'VersionsKV'
     secretName: 'MasterVersion'
-    secretValue: '$MasterVersion'
+    secretValue: '$(Master)'
 - task: CopyFiles@2
   inputs:
      Contents: '$(Build.SourcesDirectory)/*.txt'
