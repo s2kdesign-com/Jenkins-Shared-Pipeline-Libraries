@@ -29,6 +29,7 @@ steps:
     azureSubscription: 'KVAzure'
     ScriptType: 'InlineScript'
     Inline: |
+      Register-PSRepository -Default
       install-module az.keyvault -scope AllUsers
       Set-AzKeyVaultSecret -VaultName ''VersionsKV'' -Name ''MasterVersion'' -SecretValue $(MasterVersion)
     preferredAzurePowerShellVersion: '5.1.2'
