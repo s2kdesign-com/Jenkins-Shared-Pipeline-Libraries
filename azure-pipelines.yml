@@ -21,8 +21,8 @@ steps:
      Write-Host $DevelopVersion
      Write-Host "##vso[task.setvariable variable=MasterVar]$MasterVersion"
      Write-Host "##vso[task.setvariable variable=DevelopVar]$DevelopVersion"
-     $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt
-     $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt
+     $MasterVersion | Out-File $(Build.SourcesDirectory)/MasterVersion.txt -NoNewline
+     $DevelopVersion | Out-File $(Build.SourcesDirectory)/DevelopVersion.txt -NoNewline
 
 - task: CreateUpdateKeyVaultSecret@0
   inputs:
