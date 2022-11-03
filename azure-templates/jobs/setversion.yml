@@ -17,7 +17,7 @@ jobs:
         targetType: 'inline'
         script: |
           Write-Host 'buildver: $(buildVersion)'
-          if('$(Build.SourceBranch)' -eq "refs/heads/develop"){
+          if(('$(Build.SourceBranch)' -eq "refs/heads/develop") -or (startsWith('$(Build.SourceBranch)', "refs/heads/feature/"))){
           $content = [System.IO.File]::ReadAllText("$(Build.SourcesDirectory)/drop/DevelopVersion.txt")
           $content = $content.Trim()
           [System.IO.File]::WriteAllText("$(Build.SourcesDirectory)/drop/DevelopVersion.txt", $content)
@@ -30,7 +30,7 @@ jobs:
           $content = $content.Trim()
           [System.IO.File]::WriteAllText("$(Build.SourcesDirectory)/drop/MasterVersion.txt", $content)
           $Master= Get-Content $(Build.SourcesDirectory)/drop/MasterVersion.txt 
-          $assembly_version=$Master+'.'+$buildVersion
+          $assembly_version=$Master+'.'+$(buildVersion)
           Write-Host $assembly_version
           Write-Host "##vso[task.setvariable variable=assembly_version;isoutput=true]$assembly_version"
           }
