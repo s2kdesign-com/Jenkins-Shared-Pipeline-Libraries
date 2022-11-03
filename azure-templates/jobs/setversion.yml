@@ -1,0 +1,36 @@
+jobs:
+- job: BuildVersionSetter
+  displayName: Set version
+  steps:
+    - task: DownloadBuildArtifacts@1
+      inputs:
+        buildType: 'specific'
+        project: '5f808919-bffc-45c7-b4a3-4a10d5fa5832'
+        pipeline: '5381'
+        buildVersionToDownload: 'latest'
+        downloadType: 'specific'
+        downloadPath: '$(Build.SourcesDirectory)'
+        
+    - task: PowerShell@2
+      name: buildsetter
+      inputs:
+        targetType: 'inline'
+        script: |
+          Write-Host 'buildver: $(buildVersion)'
+          if(("$(Build.SourceBranch)" -eq "refs/heads/develop") -or ("startsWith(variables['Build.SourceBranch'], 'refs/heads/feature'")){
+          $content = [System.IO.File]::ReadAllText("$(Build.SourcesDirectory)/drop/DevelopVersion.txt")
+          $content = $content.Trim()
+          [System.IO.File]::WriteAllText("$(Build.SourcesDirectory)/drop/DevelopVersion.txt", $content)
+          $Develop= Get-Content $(Build.SourcesDirectory)/drop/DevelopVersion.txt 
+          $assembly_version=$Develop+'.'+$(buildVersion)
+          Write-Host $assembly_version
+          Write-Host "##vso[task.setvariable variable=assembly_version;isoutput=true]$assembly_version"
+          }else {
+          $content = [System.IO.File]::ReadAllText("$(Build.SourcesDirectory)/drop/MasterVersion.txt")
+          $content = $content.Trim()
+          [System.IO.File]::WriteAllText("$(Build.SourcesDirectory)/drop/MasterVersion.txt", $content)
+          $Master= Get-Content $(Build.SourcesDirectory)/drop/MasterVersion.txt 
+          $assembly_version=$Master+'.'+$buildVersion
+          Write-Host $assembly_version
+          Write-Host "##vso[task.setvariable variable=assembly_version;isoutput=true]$assembly_version"
+          }
