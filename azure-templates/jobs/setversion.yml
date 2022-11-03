@@ -17,7 +17,7 @@ jobs:
         targetType: 'inline'
         script: |
           Write-Host 'buildver: $(buildVersion)'
-          if(('$(Build.SourceBranch)' -eq "refs/heads/develop") -or ("startsWith(variables['Build.SourceBranch'], 'refs/heads/feature/'")){
+          if(('$(Build.SourceBranch)' -eq "refs/heads/develop") -or ("startsWith('$(Build.SourceBranch)', 'refs/heads/feature/'")){
           $content = [System.IO.File]::ReadAllText("$(Build.SourcesDirectory)/drop/DevelopVersion.txt")
           $content = $content.Trim()
           [System.IO.File]::WriteAllText("$(Build.SourcesDirectory)/drop/DevelopVersion.txt", $content)
