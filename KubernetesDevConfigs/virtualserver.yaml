@@ -1,0 +1,38 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServer
+metadata:
+  name: openapivs
+  namespace: openapi-main
+spec:
+  host: lvopenapidev.com
+  ingressClassName: nginx
+  tls:
+    secret: lvopenapidev-wildcard-certificate
+  upstreams:
+  - name: openapimain
+    service: openapi-gateway-service
+    port: 80
+  routes:
+  - path: /
+    action:
+      pass: openapimain
+  - path: /dmz
+    route: dmz-main/dmz
+  - path: /ibs
+    route: ibs-main/ibs
+  - path: /ibs/develop
+    route: ibs-develop/ibsdevelop
+  - path: /delta/develop
+    route: delta-develop/deltadevelop
+  - path: /delta/main
+    route: delta-main/deltamain
+  - path: /endeavour/main
+    route: endeavour-main/endeavourmain
+  - path: /endeavour/develop
+    route: endeavour-develop/endeavourdevelop
+  - path: /beta/develop
+    route: beta-develop/betadevelop
+  - path: /vanguard/develop
+    route: vanguard-develop/vanguarddevelop
+  - path: /vanguard/main
+    route: vanguard-main/vanguardmain
