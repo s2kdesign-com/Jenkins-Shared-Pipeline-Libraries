@@ -1,8 +1,8 @@
 apiVersion: k8s.nginx.org/v1
 kind: VirtualServerRoute
 metadata:
-  name: vanguardmain
-  namespace: vanguard-main
+  name: teamsedevelop
+  namespace: teamse-develop
 spec:
   host: lvopenapidev.com
   upstreams:
@@ -10,6 +10,6 @@ spec:
     service: openapi-gateway-service
     port: 80
   subroutes:
-  - path: /vanguard/main/gateway
+  - path: /teamse/develop/gateway
     action:
       pass: gw

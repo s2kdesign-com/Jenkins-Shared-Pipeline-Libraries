@@ -36,3 +36,5 @@ spec:
     route: vanguard-develop/vanguarddevelop
   - path: /vanguard/main
     route: vanguard-main/vanguardmain
+  - path: /teamse/develop
+    route: teamse-develop/teamsedevelop
