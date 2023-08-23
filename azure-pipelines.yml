@@ -17,7 +17,7 @@ steps:
     script: |
      $MasterVersion= Get-Content $(Build.SourcesDirectory)/resources/master_version -Raw
      $DevelopVersion= Get-Content $(Build.SourcesDirectory)/resources/develop_version -Raw
-     #$DevelopVersion=$MasterVersion.Split('.')[0]+'.'+ ([int]$MasterVersion.Split('.')[1] + 1) +'.'+ $MasterVersion.Split('.')[2]
+     $DevelopVersion=$DevelopVersion.Split('.')[0]+'.'+ $DevelopVersion.Split('.')[1] +'.'+ $MasterVersion.Split('.')[2]
      Write-Host $MasterVersion
      Write-Host $DevelopVersion
      Write-Host "##vso[task.setvariable variable=MasterVar]$MasterVersion"
