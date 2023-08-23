@@ -11,7 +11,7 @@ steps:
     workingDirectory: '$(Build.SourcesDirectory)'
     script: |
      $MasterVersion= Get-Content $(Build.SourcesDirectory)/resources/master_version -Raw
-     $Develop= Get-Content $(Build.SourcesDirectory)/resources/develop_version -Raw -NoNewLine
+     $Develop= Get-Content $(Build.SourcesDirectory)/resources/develop_version -Raw
      $Develop=$Develop.Split('.')[0]+'.'+ $Develop.Split('.')[1]
      $DevelopVersion = $Develop + '.' + $MasterVersion.Split('.')[2]
      Write-Host $MasterVersion
